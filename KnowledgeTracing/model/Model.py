@@ -127,14 +127,27 @@ class DKT(nn.Module):
         ques_d = torch.cat([ques_in, ques_out], -1)
         '''choose 50'''
 
-        loaded_array1 = np.load('../../Dataset/node2vec/emb/ASSIST17_kg_cw1_128_80_10_3_20_1.00_1.00.embQ.npy')
+        loaded_array1 = np.load('../../Dataset/node2vec/emb/ASSIST17_kg_cw1_128_80_10_5_20_1.00_1.00.embQ.npy')
         tensor_array1 = torch.tensor(loaded_array1)
         tensor_array1 = tensor_array1.to(device)
         tensor_array_expanded1 = tensor_array1.repeat(2, 1)
 
         loaded_array2 = np.load('../../Dataset/node2vec/emb/ASSIST17_kg_pk17_128_80_10_5_20_1.00_1.00.embQ.npy')
+        tensor_array2 = torch.tensor(loaded_array2)
+        tensor_array2 = tensor_array2.to(device)
+        tensor_array_expanded2 = tensor_array2.repeat(2, 1)
 
-        embedding_tensors = [ tensor_array_expanded1]
+        loaded_array3 = np.load('../../Dataset/node2vec/emb/ASSIST17_kg_cw_128_80_10_5_20_1.00_1.00.embQ.npy')
+        tensor_array3 = torch.tensor(loaded_array3)
+        tensor_array3 = tensor_array3.to(device)
+        tensor_array_expanded3 = tensor_array3.repeat(2, 1)
+
+        loaded_array4 = np.load('../../Dataset/node2vec/emb/ASSIST17_kg_pk_128_80_10_5_20_1.00_1.00.embQ.npy')
+        tensor_array4 = torch.tensor(loaded_array4)
+        tensor_array4 = tensor_array4.to(device)
+        tensor_array_expanded4 = tensor_array4.repeat(2, 1)
+
+        embedding_tensors = [ tensor_array_expanded1, tensor_array_expanded2, tensor_array_expanded3 ,tensor_array_expanded4]
 
         #embedding_tensors = [tensor_array_expanded, tensor_array_expanded1]
 
@@ -172,3 +185,4 @@ class DKT(nn.Module):
 
         emseble_logit = self.fc_ensemble(torch.cat([out_d, out_h], -1))
         return logit_c, logit_t, emseble_logit
+
