@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time : 2021/12/23 13:43
-# @Author : Yumo
-# @File : Model.py
-# @Project: GOODKT
-# @Comment :
 
 import networkx as nx
 
